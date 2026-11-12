@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Ramón Social • Glorioso Colegio Nacional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        xblack: '#07090e',
+                        xdark: '#0f1420',
+                        xcard: '#161d2d',
+                        xborder: '#232e42',
+                        xhover: '#1c2538'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #07090e;
+            color: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #232e42;
+            border-radius: 9999px;
+        }
+        .glass-panel {
+            background: rgba(22, 29, 45, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-xblack text-gray-100 antialiased min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
+
+    <!-- BARRA SUPERIOR MÓVIL -->
+    <header class="lg:hidden glass-panel sticky top-0 z-40 border-b border-xborder px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="filterCategory('all')">
+            <div class="w-9 h-9 bg-gradient-to-br from-red-600 to-amber-500 rounded-xl p-0.5 flex items-center justify-center shadow-lg shadow-red-900/30">
+                <svg viewBox="0 0 200 220" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <clipPath id="shieldMob">
+                            <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z"/>
+                        </clipPath>
+                    </defs>
+                    <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z" fill="#dc2626"/>
+                    <g clip-path="url(#shieldMob)"><polygon points="155,0 200,0 45,220 0,220" fill="#ffffff"/></g>
+                    <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z" fill="none" stroke="#facc15" stroke-width="8"/>
+                    <ellipse cx="100" cy="102" rx="42" ry="56" fill="#0284c7" stroke="#1e293b" stroke-width="2"/>
+                    <text x="100" y="120" font-family="Arial Black, sans-serif" font-weight="900" font-size="38" fill="#facc15" text-anchor="middle">CSR</text>
+                </svg>
+            </div>
+            <div>
+                <h1 class="font-extrabold text-sm tracking-tight bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">San Ramón</h1>
+                <p class="text-[10px] font-medium text-amber-400">Cajamarca</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="openProfileTab()" id="mobileUserBtn" class="w-9 h-9 bg-xcard hover:bg-xhover text-gray-200 rounded-full border border-xborder flex items-center justify-center transition-colors">
+                <i class="fa-regular fa-user text-amber-400 text-xs"></i>
+            </button>
+            <button id="mobileKeyBtn" onclick="toggleAdminModal()" class="w-9 h-9 bg-xcard hover:bg-xhover text-amber-400 rounded-full border border-amber-500/30 flex items-center justify-center transition-colors" title="Ingresar Clave">
+                <i class="fa-solid fa-key text-xs"></i>
+            </button>
+            <button id="mobileNewPostBtn" onclick="openNewPostModal()" class="hidden px-3.5 py-1.5 text-xs font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black rounded-full shadow-md">
+                + Post
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="max-w-7xl mx-auto w-full flex-1 grid grid-cols-1 lg:grid-cols-12">
+
+        <!-- COLUMNA IZQUIERDA: Menú de Red Social -->
+        <aside class="hidden lg:flex lg:col-span-3 flex-col justify-between p-4 sticky top-0 h-screen overflow-y-auto custom-scrollbar border-r border-xborder">
+            <div class="space-y-4">
+                <!-- Logotipo -->
+                <div class="px-3 py-2 flex items-center gap-3 cursor-pointer group" onclick="filterCategory('all')">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-red-600 via-rose-600 to-amber-400 p-0.5 shadow-lg shadow-red-900/40 flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                        <div class="w-full h-full bg-xblack rounded-[14px] flex items-center justify-center">
+                            <span class="font-black text-lg tracking-tighter bg-gradient-to-r from-red-500 to-amber-400 bg-clip-text text-transparent">SR</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-extrabold text-base tracking-tight text-white block">San Ramón</span>
+                        <span class="text-[11px] font-semibold text-amber-400 tracking-wider uppercase">Social Feed</span>
+                    </div>
+                </div>
+
+                <!-- Menú de Navegación -->
+                <nav class="space-y-1.5 pt-2">
+                    <button onclick="filterCategory('all')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-white font-bold text-base group">
+                        <div class="w-7 text-center text-amber-400 text-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </div>
+                        <span>Inicio</span>
+                        <span class="active-dot ml-auto w-2 h-2 bg-amber-400 rounded-full shadow-[0_0_8px_rgba(250,204,21,0.8)]"></span>
+                    </button>
+
+                    <button onclick="filterCategory('institucional')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <span>Institucional</span>
+                        <span class="active-dot hidden ml-auto w-2 h-2 bg-amber-400 rounded-full"></span>
+                    </button>
+
+                    <button onclick="filterCategory('deportes')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-solid fa-futbol"></i>
+                        </div>
+                        <span>Deportes</span>
+                        <span class="active-dot hidden ml-auto w-2 h-2 bg-amber-400 rounded-full"></span>
+                    </button>
+
+                    <button onclick="filterCategory('cultura')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <span>Arte y Cultura</span>
+                        <span class="active-dot hidden ml-auto w-2 h-2 bg-amber-400 rounded-full"></span>
+                    </button>
+
+                    <button onclick="filterCategory('academico')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <span>Académico</span>
+                        <span class="active-dot hidden ml-auto w-2 h-2 bg-amber-400 rounded-full"></span>
+                    </button>
+
+                    <button onclick="filterCategory('saved')" class="x-nav-item w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <span>Guardados</span>
+                        <span class="active-dot hidden ml-auto w-2 h-2 bg-amber-400 rounded-full"></span>
+                    </button>
+
+                    <button onclick="openProfileTab()" class="w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-gray-400 text-lg group-hover:text-amber-400 group-hover:scale-110 transition-all">
+                            <i class="fa-regular fa-user-circle"></i>
+                        </div>
+                        <span>Mi Perfil</span>
+                    </button>
+
+                    <!-- Pestaña Clave Administrador (Se oculta dinámicamente al loguearse) -->
+                    <button onclick="toggleAdminModal()" id="sidebarKeyItem" class="w-full flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-xcard transition-all text-gray-300 font-medium text-base group">
+                        <div class="w-7 text-center text-amber-400 text-lg">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <span>Clave de Editor</span>
+                    </button>
+                </nav>
+
+                <!-- Botón de Publicación (Aparece tras ingresar clave) -->
+                <div class="pt-3">
+                    <button onclick="handleMainPostButtonClick()" id="mainPostCtaBtn"
+                        class="w-full py-3.5 px-6 rounded-2xl font-bold text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black shadow-xl shadow-amber-500/10 transition-all transform active:scale-95 flex items-center justify-center gap-2.5">
+                        <i id="mainPostCtaIcon" class="fa-solid fa-lock text-xs text-gray-800"></i>
+                        <span id="mainPostCtaLabel">Ingresar Clave para Publicar</span>
+                    </button>
+                    <p id="adminStatusHint" class="text-[11px] text-center text-gray-500 mt-2.5">
+                        Se requiere clave para desbloquear
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tarjeta inferior de Perfil -->
+            <div id="bottomProfileContainer" class="pt-4">
+                <!-- Se actualiza dinámicamente -->
+            </div>
+        </aside>
+
+        <!-- COLUMNA CENTRAL: Timeline / Muro / Pestaña de Perfil -->
+        <main class="lg:col-span-6 border-r border-xborder min-h-screen flex flex-col">
+            
+            <!-- VISTA DE MURO DE NOTICIAS -->
+            <div id="timelineView" class="flex-1 flex flex-col">
+                <!-- Header Sticky -->
+                <div class="sticky top-0 z-30 glass-panel border-b border-xborder">
+                    <div class="px-4 pt-3.5 pb-2.5 flex items-center justify-between">
+                        <div>
+                            <h2 id="feedHeaderTitle" class="font-extrabold text-lg text-white tracking-tight flex items-center gap-2">
+                                <span>Inicio</span>
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            </h2>
+                            <p class="text-xs text-gray-400 font-medium">Canal oficial del Colegio San Ramón</p>
+                        </div>
+                        <span id="postCountBadge" class="text-xs font-semibold bg-xcard text-amber-400 px-3 py-1 rounded-full border border-xborder shadow-inner">
+                            0 posts
+                        </span>
+                    </div>
+
+                    <!-- Pestañas de Categorías -->
+                    <div class="flex items-center overflow-x-auto custom-scrollbar border-t border-xborder/60">
+                        <button onclick="filterCategory('all', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-bold text-white border-b-2 border-amber-400 hover:bg-xhover transition-colors whitespace-nowrap">
+                            Para Ti
+                        </button>
+                        <button onclick="filterCategory('institucional', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-medium text-gray-400 border-b-2 border-transparent hover:bg-xhover hover:text-gray-200 transition-colors whitespace-nowrap">
+                            Institucional
+                        </button>
+                        <button onclick="filterCategory('deportes', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-medium text-gray-400 border-b-2 border-transparent hover:bg-xhover hover:text-gray-200 transition-colors whitespace-nowrap">
+                            Deportes
+                        </button>
+                        <button onclick="filterCategory('cultura', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-medium text-gray-400 border-b-2 border-transparent hover:bg-xhover hover:text-gray-200 transition-colors whitespace-nowrap">
+                            Cultura
+                        </button>
+                        <button onclick="filterCategory('academico', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-medium text-gray-400 border-b-2 border-transparent hover:bg-xhover hover:text-gray-200 transition-colors whitespace-nowrap">
+                            Académico
+                        </button>
+                        <button onclick="filterCategory('saved', this)" class="x-tab-btn flex-1 min-w-fit px-4 py-3 text-xs sm:text-sm font-medium text-gray-400 border-b-2 border-transparent hover:bg-xhover hover:text-gray-200 transition-colors whitespace-nowrap">
+                            Guardados
+                        </button>
+                    </div>
+
+                    <!-- Buscador móvil -->
+                    <div class="lg:hidden px-4 py-2.5 border-t border-xborder/60">
+                        <div class="relative">
+                            <input type="text" oninput="syncSearch(this.value)" placeholder="Buscar publicaciones..." 
+                                class="w-full pl-9 pr-4 py-2 bg-xcard border border-xborder rounded-full text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-500 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor del Muro -->
+                <div id="postsContainer" class="divide-y divide-xborder/60 flex-1">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+
+            <!-- VISTA DE PESTAÑA DE PERFIL (Se abre al hacer clic en Mi Perfil) -->
+            <div id="profileTabView" class="hidden flex-1 flex flex-col">
+                <!-- Header Sticky de Perfil -->
+                <div class="sticky top-0 z-30 glass-panel border-b border-xborder px-4 py-3 flex items-center gap-4">
+                    <button onclick="navigateToHome()" class="w-9 h-9 rounded-full bg-xcard hover:bg-xhover flex items-center justify-center text-gray-200 transition-colors">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h2 id="profileHeaderName" class="text-base font-extrabold text-white leading-tight">Perfil de Usuario</h2>
+                        <p id="profileHeaderStats" class="text-xs text-gray-400">0 guardados</p>
+                    </div>
+                </div>
+
+                <!-- Portada y Foto de Perfil estilo Red Social -->
+                <div class="relative">
+                    <div class="h-36 sm:h-44 bg-gradient-to-r from-red-700 via-rose-800 to-amber-600 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/25"></div>
+                    </div>
+                    <div class="px-5 pb-5 border-b border-xborder">
+                        <div class="flex justify-between items-end -mt-12 sm:-mt-14 mb-4 relative z-10">
+                            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-xblack bg-xcard overflow-hidden shadow-2xl">
+                                <img id="profileMainAvatar" src="" alt="Avatar" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="openUserModal()" class="px-4 py-2 bg-xcard hover:bg-xhover border border-xborder text-white font-bold text-xs rounded-full transition-colors">
+                                    Editar perfil
+                                </button>
+                                <button onclick="logoutUserAndReload()" class="px-3.5 py-2 bg-rose-950/60 hover:bg-rose-900 border border-rose-900 text-rose-300 font-bold text-xs rounded-full transition-colors">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="profileBioDetails" class="space-y-1.5">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestañas del Perfil -->
+                <div class="flex border-b border-xborder text-xs font-bold">
+                    <button onclick="switchProfileSubTab('saved')" id="subTabSavedBtn" class="flex-1 py-3.5 text-center text-white border-b-2 border-amber-400 hover:bg-xhover transition-colors">
+                        Guardados
+                    </button>
+                    <button onclick="switchProfileSubTab('likes')" id="subTabLikesBtn" class="flex-1 py-3.5 text-center text-gray-400 border-b-2 border-transparent hover:bg-xhover transition-colors">
+                        Me gusta
+                    </button>
+                </div>
+
+                <!-- Contenido de Actividad del Perfil -->
+                <div id="profileActivityContainer" class="divide-y divide-xborder/60 flex-1">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+
+        </main>
+
+        <!-- COLUMNA DERECHA: Insignia, Botón (+) y Datos -->
+        <aside class="hidden lg:flex lg:col-span-3 flex-col gap-5 p-4 sticky top-0 h-screen overflow-y-auto custom-scrollbar">
+            <!-- Buscador elegante -->
+            <div class="relative">
+                <input type="text" id="searchInput" onkeyup="searchPosts()" placeholder="Buscar en San Ramón..." 
+                    class="w-full pl-11 pr-4 py-3 bg-xcard border border-xborder rounded-2xl text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-amber-400 focus:bg-xblack transition-all shadow-inner">
+                <i class="fa-solid fa-magnifying-glass absolute left-4.5 top-4 text-gray-500 text-sm"></i>
+            </div>
+
+            <!-- Botón (+) para Publicar en la Barra Derecha (Solo visible tras ingresar clave) -->
+            <div id="rightSidebarPlusContainer" class="hidden">
+                <button onclick="openNewPostModal()" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black font-extrabold text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02] active:scale-95">
+                    <span class="w-7 h-7 rounded-full bg-black/15 flex items-center justify-center text-base font-black">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                    <span>Nueva Publicación</span>
+                </button>
+            </div>
+
+            <!-- Tarjeta Insignia y Datos del Colegio -->
+            <div class="bg-gradient-to-b from-xcard to-xdark rounded-3xl p-6 border border-xborder text-center space-y-4 shadow-xl">
+                <div class="w-32 h-36 mx-auto flex items-center justify-center transform hover:scale-105 transition-transform duration-300">
+                    <!-- Insignia Oficial Colegio San Ramón Cajamarca -->
+                    <svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-[0_0_20px_rgba(250,204,21,0.25)]" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <clipPath id="shieldClipSide">
+                                <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z"/>
+                            </clipPath>
+                            <linearGradient id="skyGradSide" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#0284c7"/>
+                                <stop offset="100%" stop-color="#bae6fd"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z" fill="#dc2626"/>
+                        <g clip-path="url(#shieldClipSide)">
+                            <polygon points="155,0 200,0 45,220 0,220" fill="#ffffff"/>
+                        </g>
+                        <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z" fill="none" stroke="#facc15" stroke-width="6" stroke-linejoin="round"/>
+                        <path d="M100 12 L175 32 Q160 65 182 95 Q195 145 100 208 Q5 145 18 95 Q40 65 25 32 Z" fill="none" stroke="#ca8a04" stroke-width="1.5" stroke-linejoin="round"/>
+                        <ellipse cx="100" cy="102" rx="42" ry="56" fill="url(#skyGradSide)" stroke="#1e293b" stroke-width="2"/>
+                        <g clip-path="url(#shieldClipSide)">
+                            <rect x="65" y="142" width="70" height="16" fill="#16a34a"/>
+                            <rect x="72" y="122" width="56" height="20" fill="#facc15" stroke="#1e293b" stroke-width="1.5"/>
+                            <polygon points="82,122 100,110 118,122" fill="#facc15" stroke="#1e293b" stroke-width="1.5"/>
+                            <path d="M92 142 L92 132 A8 8 0 0 1 108 132 L108 142 Z" fill="#dc2626" stroke="#1e293b" stroke-width="1.5"/>
+                            <line x1="100" y1="110" x2="100" y2="85" stroke="#1e293b" stroke-width="2"/>
+                            <rect x="100" y="87" width="5" height="9" fill="#dc2626"/>
+                            <rect x="105" y="87" width="5" height="9" fill="#ffffff"/>
+                            <rect x="110" y="87" width="5" height="9" fill="#dc2626"/>
+                        </g>
+                        <path d="M136 78 C136 42, 62 42, 62 102 C62 162, 136 162, 136 126" fill="none" stroke="#facc15" stroke-width="11" stroke-linecap="round"/>
+                        <path d="M136 78 C136 42, 62 42, 62 102 C62 162, 136 162, 136 126" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-linecap="round"/>
+                        <text x="84" y="126" font-family="Arial Black, sans-serif" font-weight="900" font-size="52" fill="#facc15" stroke="#1e293b" stroke-width="1.5" text-anchor="middle" transform="scale(0.85, 1.25) translate(14, -22)">S</text>
+                        <text x="116" y="126" font-family="Arial Black, sans-serif" font-weight="900" font-size="52" fill="#facc15" stroke="#1e293b" stroke-width="1.5" text-anchor="middle" transform="scale(0.85, 1.25) translate(22, -22)">R</text>
+                        <text x="100" y="185" font-family="Arial Black, sans-serif" font-weight="900" font-size="16" fill="#facc15" stroke="#7f1d1d" stroke-width="0.6" text-anchor="middle" letter-spacing="0.5">CAJAMARCA</text>
+                    </svg>
+                </div>
+
+                <div>
+                    <h3 class="font-extrabold text-white text-base tracking-tight">Colegio San Ramón</h3>
+                    <p class="text-xs text-amber-400 font-bold mt-0.5">Glorioso Colegio Nacional</p>
+                </div>
+
+                <div class="pt-3.5 border-t border-xborder text-left text-xs text-gray-300 space-y-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-lg bg-red-950/80 text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-red-900/50">
+                            <i class="fa-solid fa-location-dot text-[11px]"></i>
+                        </div>
+                        <span class="leading-relaxed">Av. 13 de Julio 275, Cajamarca</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-lg bg-amber-950/80 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-amber-900/50">
+                            <i class="fa-solid fa-envelope text-[11px]"></i>
+                        </div>
+                        <a href="mailto:sanramonnoticias2@gmail.com" class="hover:text-amber-400 transition-colors break-all leading-relaxed">sanramonnoticias2@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- MODAL DE REGISTRO / PERFIL DE USUARIO -->
+    <div id="userModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-xdark border border-xborder rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-5 text-gray-100">
+            <div class="flex justify-between items-center border-b border-xborder pb-3.5">
+                <h3 class="text-base font-extrabold text-white flex items-center gap-2">
+                    <i class="fa-regular fa-user-circle text-amber-400 text-lg"></i>
+                    <span>Tu Cuenta en San Ramón</span>
+                </h3>
+                <button onclick="closeUserModal()" class="w-8 h-8 rounded-full bg-xcard hover:bg-xhover flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <p class="text-xs text-gray-400 leading-relaxed">
+                Crea tu cuenta con tu correo y foto de perfil para comentar, guardar publicaciones y dar Me gusta.
+            </p>
+
+            <form onsubmit="saveUserAccount(event)" class="space-y-4">
+                <div class="flex flex-col items-center gap-3">
+                    <div class="relative group">
+                        <img id="avatarPreview" src="https://ui-avatars.com/api/?name=Estudiante+SR&background=991b1b&color=fff" alt="Perfil" 
+                            class="w-20 h-20 rounded-full object-cover border-2 border-amber-400 shadow-lg">
+                        <label class="absolute bottom-0 right-0 w-7 h-7 bg-amber-400 hover:bg-amber-300 text-black rounded-full flex items-center justify-center cursor-pointer shadow-md transition-transform transform group-hover:scale-110">
+                            <i class="fa-solid fa-camera text-xs"></i>
+                            <input type="file" id="avatarFileInput" accept="image/*" class="hidden" onchange="previewAvatarFile(event)">
+                        </label>
+                    </div>
+                    <span class="text-xs text-gray-400">Sube tu foto de perfil</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Nombre completo o apodo</label>
+                    <input type="text" id="userNameInput" required placeholder="Ej: Juan Pérez" 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400 transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Correo electrónico</label>
+                    <input type="email" id="userEmailInput" required placeholder="tu.correo@gmail.com" 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400 transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Biografía corta o grado</label>
+                    <input type="text" id="userBioInput" placeholder="Ej: Estudiante 5to de Secundaria - Promoción 2026" 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400 transition-colors">
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button type="button" id="logoutUserBtnModal" onclick="logoutUser(); closeUserModal();" class="hidden text-xs font-bold text-rose-400 hover:underline">
+                        Cerrar sesión
+                    </button>
+                    <div class="flex gap-2.5 ml-auto">
+                        <button type="button" onclick="closeUserModal()" class="px-4 py-2.5 text-xs font-bold text-gray-400 hover:bg-xcard rounded-full transition-colors">Cancelar</button>
+                        <button type="submit" class="px-6 py-2.5 text-xs font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black rounded-full shadow-lg">Guardar Cuenta</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CLAVE DE ADMINISTRADOR -->
+    <div id="adminModal" onclick="if(event.target === this) closeAdminModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-xdark border border-xborder rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-5 text-gray-100 relative">
+            <button type="button" onclick="closeAdminModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-xcard hover:bg-xhover flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Cerrar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 bg-amber-400/10 text-amber-400 border border-amber-400/30 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-inner mb-1">
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <h3 class="text-lg font-extrabold text-white">Clave de Editor</h3>
+                <p class="text-xs text-gray-400 leading-relaxed">Ingresa la clave autorizada para habilitar la subida de contenido.</p>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-gray-300 mb-1.5">Clave secreta</label>
+                <input type="password" id="adminPasswordInput" onkeydown="if(event.key==='Enter') verifyAdminKey(); if(event.key==='Escape') closeAdminModal();" placeholder="••••••••••••"
+                    class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400 tracking-widest text-center">
+            </div>
+
+            <div id="authErrorMsg" class="hidden text-xs text-rose-400 bg-rose-950/60 p-3 rounded-2xl border border-rose-900/60 text-center font-medium">
+                Clave incorrecta. Acceso denegado.
+            </div>
+
+            <div class="flex gap-3 pt-1">
+                <button type="button" onclick="closeAdminModal()" class="flex-1 py-3 text-xs font-bold text-gray-400 hover:bg-xcard rounded-full transition-colors">Cancelar</button>
+                <button type="button" onclick="verifyAdminKey()" class="flex-1 py-3 text-xs font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black rounded-full shadow-lg">Verificar Clave</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL NUEVA PUBLICACIÓN (FOTOS, VIDEOS, TEXTO) -->
+    <div id="newPostModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-xdark border border-xborder rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto custom-scrollbar text-gray-100">
+            <div class="flex justify-between items-center border-b border-xborder pb-3.5">
+                <h3 class="font-extrabold text-white text-base flex items-center gap-2">
+                    <i class="fa-solid fa-feather-pointed text-amber-400"></i>
+                    <span>Subir Contenido al Muro</span>
+                </h3>
+                <button onclick="closeNewPostModal()" class="w-8 h-8 rounded-full bg-xcard hover:bg-xhover flex items-center justify-center text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="createPostForm" onsubmit="handleCreatePost(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Nombre o Área Autorizada</label>
+                    <input type="text" id="postAuthor" required placeholder="Ej: Prensa San Ramón" 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1.5">Categoría</label>
+                        <select id="postCategory" class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            <option value="institucional">Institucional</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="cultura">Arte y Cultura</option>
+                            <option value="academico">Académico</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1.5">Tipo de Archivo</label>
+                        <select id="postMediaType" onchange="toggleMediaTypeInputs(this.value)" class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400">
+                            <option value="photo">Foto</option>
+                            <option value="video">Video</option>
+                            <option value="none">Solo Texto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Input Archivo o URL -->
+                <div id="mediaUploadContainer" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1.5" id="mediaFileLabel">Subir Archivo de Foto</label>
+                        <input type="file" id="postMediaFile" accept="image/*,video/*" 
+                            class="w-full text-xs text-gray-400 file:mr-2 file:py-2.5 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-xcard file:text-amber-400 hover:file:bg-xhover cursor-pointer">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-1.5">O enlace URL del archivo</label>
+                        <input type="url" id="postMediaUrl" placeholder="https://..." 
+                            class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Título / Titular</label>
+                    <input type="text" id="postTitle" required placeholder="Titular del post..." 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-300 mb-1.5">Contenido / Descripción</label>
+                    <textarea id="postContent" rows="4" required placeholder="Escribe el mensaje o noticia..." 
+                        class="w-full px-4 py-3 bg-xblack border border-xborder rounded-2xl text-sm text-white focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeNewPostModal()" class="px-5 py-2.5 text-xs font-bold text-gray-400 hover:bg-xcard rounded-full transition-colors">Cancelar</button>
+                    <button type="submit" class="px-6 py-2.5 text-xs font-extrabold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black rounded-full shadow-lg">Publicar en el Muro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST FLOTANTE -->
+    <div id="toastMsg" class="fixed bottom-6 right-6 bg-xdark border border-xborder text-white text-xs font-bold px-5 py-3.5 rounded-2xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <i class="fa-solid fa-circle-info text-amber-400 text-base"></i>
+        <span id="toastText"></span>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const SECRET_ADMIN_KEY = "sanramon2027.com";
+        let isAdminLoggedIn = localStorage.getItem('sr_admin_logged') === 'true';
+        let activeCategoryFilter = "all";
+        let activeProfileSubTab = "saved";
+        let tempUploadedAvatar = "";
+
+        let currentUser = JSON.parse(localStorage.getItem('sr_current_user')) || null;
+        let postsData = JSON.parse(localStorage.getItem('sr_posts_data')) || [];
+
+        window.onload = function() {
+            updateAdminStateUI();
+            updateUserUI();
+
+            // Verificar si la página cargó solicitando la vista de perfil
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('view') === 'profile') {
+                renderProfilePageView();
+            } else {
+                renderPosts();
+            }
+        };
+
+        function showToast(message) {
+            const toast = document.getElementById('toastMsg');
+            document.getElementById('toastText').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3200);
+        }
+
+        function savePostsToStorage() {
+            try {
+                localStorage.setItem('sr_posts_data', JSON.stringify(postsData));
+            } catch (err) {
+                showToast("Aviso: El archivo multimedia es muy pesado.");
+            }
+        }
+
+        // --- GESTIÓN DE CUENTAS DE USUARIO ---
+        function openUserModal() {
+            const logoutBtn = document.getElementById('logoutUserBtnModal');
+            if (currentUser) {
+                document.getElementById('userNameInput').value = currentUser.name;
+                document.getElementById('userEmailInput').value = currentUser.email;
+                document.getElementById('userBioInput').value = currentUser.bio || '';
+                document.getElementById('avatarPreview').src = currentUser.avatar;
+                tempUploadedAvatar = currentUser.avatar;
+                logoutBtn.classList.remove('hidden');
+            } else {
+                document.getElementById('userNameInput').value = '';
+                document.getElementById('userEmailInput').value = '';
+                document.getElementById('userBioInput').value = '';
+                document.getElementById('avatarPreview').src = 'https://ui-avatars.com/api/?name=SR&background=991b1b&color=fff';
+                tempUploadedAvatar = '';
+                logoutBtn.classList.add('hidden');
+            }
+            document.getElementById('userModal').classList.remove('hidden');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.add('hidden');
+        }
+
+        function previewAvatarFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tempUploadedAvatar = e.target.result;
+                document.getElementById('avatarPreview').src = tempUploadedAvatar;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function saveUserAccount(e) {
+            e.preventDefault();
+            const name = document.getElementById('userNameInput').value.trim();
+            const email = document.getElementById('userEmailInput').value.trim();
+            const bio = document.getElementById('userBioInput').value.trim();
+            const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=991b1b&color=fff`;
+
+            currentUser = {
+                name: name,
+                email: email,
+                bio: bio || 'Miembro de la comunidad San Ramón',
+                avatar: tempUploadedAvatar || fallbackAvatar
+            };
+
+            localStorage.setItem('sr_current_user', JSON.stringify(currentUser));
+            updateUserUI();
+            closeUserModal();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('view') === 'profile') {
+                renderProfilePageView();
+            } else {
+                renderPosts();
+            }
+            showToast(`¡Bienvenido/a, ${currentUser.name}!`);
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('sr_current_user');
+            updateUserUI();
+            renderPosts();
+            showToast("Sesión cerrada.");
+        }
+
+        function logoutUserAndReload() {
+            currentUser = null;
+            localStorage.removeItem('sr_current_user');
+            window.location.href = window.location.pathname;
+        }
+
+        function updateUserUI() {
+            const container = document.getElementById('bottomProfileContainer');
+            const mobileBtn = document.getElementById('mobileUserBtn');
+
+            if (currentUser) {
+                if (mobileBtn) {
+                    mobileBtn.innerHTML = `<img src="${currentUser.avatar}" class="w-full h-full object-cover rounded-full" alt="Perfil">`;
+                }
+                if (container) {
+                    container.innerHTML = `
+                        <div class="bg-xcard border border-xborder rounded-2xl p-3 flex items-center justify-between gap-2 hover:bg-xhover transition-colors">
+                            <div onclick="openProfileTab()" class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+                                <img src="${currentUser.avatar}" alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-amber-400 flex-shrink-0">
+                                <div class="min-w-0">
+                                    <p class="text-xs font-extrabold text-white truncate">${currentUser.name}</p>
+                                    <p class="text-[11px] text-gray-400 truncate">${currentUser.email}</p>
+                                </div>
+                            </div>
+                            <button onclick="openUserModal()" title="Editar cuenta" class="w-8 h-8 rounded-full hover:bg-xblack flex items-center justify-center text-gray-400 hover:text-amber-400 transition-colors flex-shrink-0">
+                                <i class="fa-solid fa-gear text-xs"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+            } else {
+                if (mobileBtn) {
+                    mobileBtn.innerHTML = `<i class="fa-regular fa-user text-amber-400 text-xs"></i>`;
+                }
+                if (container) {
+                    container.innerHTML = `
+                        <button onclick="openUserModal()" class="w-full bg-xcard hover:bg-xhover border border-xborder rounded-2xl p-3.5 flex items-center gap-3 transition-colors text-left">
+                            <div class="w-10 h-10 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 flex-shrink-0">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-extrabold text-white">Crear Cuenta</p>
+                                <p class="text-[11px] text-gray-400">Para comentar y dar like</p>
+                            </div>
+                        </button>
+                    `;
+                }
+            }
+        }
+
+        // --- PESTAÑA DE PERFIL CON RECARGA DE PÁGINA ---
+        function openProfileTab() {
+            if (!currentUser) {
+                showToast("Primero crea tu cuenta para ver tu perfil.");
+                openUserModal();
+                return;
+            }
+            // Recarga la página cargando la vista de perfil como en una red social
+            window.location.href = window.location.pathname + '?view=profile';
+        }
+
+        function navigateToHome() {
+            window.location.href = window.location.pathname;
+        }
+
+        function closeProfileTab() {
+            document.getElementById('profileTabView').classList.add('hidden');
+            document.getElementById('timelineView').classList.remove('hidden');
+            if (window.location.search.includes('view=profile')) {
+                window.history.pushState({}, '', window.location.pathname);
+            }
+        }
+
+        function switchProfileSubTab(tab) {
+            activeProfileSubTab = tab;
+            const savedBtn = document.getElementById('subTabSavedBtn');
+            const likesBtn = document.getElementById('subTabLikesBtn');
+
+            if (tab === 'saved') {
+                savedBtn.className = "flex-1 py-3.5 text-center text-white border-b-2 border-amber-400 hover:bg-xhover transition-colors";
+                likesBtn.className = "flex-1 py-3.5 text-center text-gray-400 border-b-2 border-transparent hover:bg-xhover transition-colors";
+            } else {
+                likesBtn.className = "flex-1 py-3.5 text-center text-white border-b-2 border-amber-400 hover:bg-xhover transition-colors";
+                savedBtn.className = "flex-1 py-3.5 text-center text-gray-400 border-b-2 border-transparent hover:bg-xhover transition-colors";
+            }
+            renderProfileActivityList();
+        }
+
+        function renderProfilePageView() {
+            if (!currentUser) {
+                window.location.href = window.location.pathname;
+                return;
+            }
+
+            document.getElementById('timelineView').classList.add('hidden');
+            document.getElementById('profileTabView').classList.remove('hidden');
+
+            const savedCount = postsData.filter(p => p.savedBy && p.savedBy.includes(currentUser.email)).length;
+            const likedCount = postsData.filter(p => p.likedBy && p.likedBy.includes(currentUser.email)).length;
+
+            document.getElementById('profileHeaderName').textContent = currentUser.name;
+            document.getElementById('profileHeaderStats').textContent = `${savedCount} guardados · ${likedCount} me gusta`;
+            document.getElementById('profileMainAvatar').src = currentUser.avatar;
+
+            document.getElementById('profileBioDetails').innerHTML = `
+                <h1 class="text-xl font-extrabold text-white flex items-center gap-2">
+                    <span>${currentUser.name}</span>
+                    <span class="text-[10px] font-bold bg-amber-400/15 text-amber-400 border border-amber-400/30 px-2.5 py-0.5 rounded-full">Comunidad SR</span>
+                </h1>
+                <p class="text-xs text-gray-400">${currentUser.email}</p>
+                <p class="text-sm text-gray-200 pt-2 leading-relaxed">${currentUser.bio}</p>
+                <div class="flex items-center gap-5 pt-3 text-xs text-gray-400">
+                    <span><strong class="text-white font-extrabold">${savedCount}</strong> Guardados</span>
+                    <span><strong class="text-white font-extrabold">${likedCount}</strong> Me gusta</span>
+                </div>
+            `;
+
+            renderProfileActivityList();
+        }
+
+        function renderProfileActivityList() {
+            const container = document.getElementById('profileActivityContainer');
+            let items = [];
+
+            if (activeProfileSubTab === 'saved') {
+                items = postsData.filter(p => p.savedBy && p.savedBy.includes(currentUser.email));
+            } else {
+                items = postsData.filter(p => p.likedBy && p.likedBy.includes(currentUser.email));
+            }
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="p-12 text-center space-y-2">
+                        <i class="fa-regular ${activeProfileSubTab === 'saved' ? 'fa-bookmark' : 'fa-heart'} text-2xl text-gray-500"></i>
+                        <p class="text-sm font-bold text-gray-300">
+                            ${activeProfileSubTab === 'saved' ? 'Aún no has guardado publicaciones' : 'Aún no has dado Me gusta'}
+                        </p>
+                        <p class="text-xs text-gray-500">Explora el muro principal para interactuar con las noticias del colegio.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(p => `
+                <div class="p-5 hover:bg-xcard/40 transition-colors space-y-2">
+                    <div class="flex items-center justify-between text-xs text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-white">${p.author}</span>
+                            <i class="fa-solid fa-circle-check text-amber-400 text-[11px]"></i>
+                            <span>· ${p.date}</span>
+                        </div>
+                        <button onclick="navigateToHome()" class="text-amber-400 hover:underline font-bold">Ver en muro</button>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-gray-100">${p.title}</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">${p.content}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- AUTENTICACIÓN ADMIN Y OCULTAR CLAVE ---
+        function closeAdminModal() {
+            const modal = document.getElementById('adminModal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+            const err = document.getElementById('authErrorMsg');
+            if (err) {
+                err.classList.add('hidden');
+            }
+            const input = document.getElementById('adminPasswordInput');
+            if (input) {
+                input.value = '';
+            }
+        }
+
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            if (!modal.classList.contains('hidden')) {
+                closeAdminModal();
+                return;
+            }
+            if (isAdminLoggedIn) {
+                logoutAdmin();
+                return;
+            }
+            document.getElementById('authErrorMsg').classList.add('hidden');
+            document.getElementById('adminPasswordInput').value = '';
+            modal.classList.remove('hidden');
+            setTimeout(() => document.getElementById('adminPasswordInput').focus(), 50);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAdminModal();
+                closeUserModal();
+                closeNewPostModal();
+            }
+        });
+
+        function verifyAdminKey() {
+            const inputKey = document.getElementById('adminPasswordInput').value;
+            if (inputKey === SECRET_ADMIN_KEY) {
+                isAdminLoggedIn = true;
+                localStorage.setItem('sr_admin_logged', 'true');
+                updateAdminStateUI();
+                closeAdminModal();
+                showToast("¡Clave correcta! Modo Editor activado.");
+            } else {
+                document.getElementById('authErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            localStorage.removeItem('sr_admin_logged');
+            updateAdminStateUI();
+            showToast("Modo Editor cerrado.");
+        }
+
+        function updateAdminStateUI() {
+            const mobileNewPostBtn = document.getElementById('mobileNewPostBtn');
+            const mobileKeyBtn = document.getElementById('mobileKeyBtn');
+            const sidebarKeyItem = document.getElementById('sidebarKeyItem');
+            const rightSidebarPlusContainer = document.getElementById('rightSidebarPlusContainer');
+            const mainPostCtaIcon = document.getElementById('mainPostCtaIcon');
+            const mainPostCtaLabel = document.getElementById('mainPostCtaLabel');
+            const adminStatusHint = document.getElementById('adminStatusHint');
+
+            if (isAdminLoggedIn) {
+                // Se oculta la pestaña de clave lateral y móvil
+                if (sidebarKeyItem) sidebarKeyItem.classList.add('hidden');
+                if (mobileKeyBtn) mobileKeyBtn.classList.add('hidden');
+                if (rightSidebarPlusContainer) rightSidebarPlusContainer.classList.remove('hidden');
+                mobileNewPostBtn.classList.remove('hidden');
+
+                mainPostCtaIcon.className = "fa-solid fa-plus text-xs text-black font-black";
+                mainPostCtaLabel.textContent = "Nueva Publicación";
+                adminStatusHint.textContent = "Modo editor activo";
+                adminStatusHint.classList.add('text-emerald-400');
+            } else {
+                if (sidebarKeyItem) sidebarKeyItem.classList.remove('hidden');
+                if (mobileKeyBtn) mobileKeyBtn.classList.remove('hidden');
+                if (rightSidebarPlusContainer) rightSidebarPlusContainer.classList.add('hidden');
+                mobileNewPostBtn.classList.add('hidden');
+
+                mainPostCtaIcon.className = "fa-solid fa-lock text-xs text-gray-700";
+                mainPostCtaLabel.textContent = "Ingresar Clave para Publicar";
+                adminStatusHint.textContent = "Se requiere clave para desbloquear";
+                adminStatusHint.classList.remove('text-emerald-400');
+            }
+            renderPosts();
+        }
+
+        function handleMainPostButtonClick() {
+            if (!isAdminLoggedIn) {
+                toggleAdminModal();
+            } else {
+                document.getElementById('newPostModal').classList.remove('hidden');
+            }
+        }
+
+        function openNewPostModal() {
+            if (!isAdminLoggedIn) {
+                toggleAdminModal();
+                return;
+            }
+            document.getElementById('newPostModal').classList.remove('hidden');
+        }
+
+        function closeNewPostModal() {
+            document.getElementById('newPostModal').classList.add('hidden');
+            document.getElementById('createPostForm').reset();
+        }
+
+        function toggleMediaTypeInputs(type) {
+            const container = document.getElementById('mediaUploadContainer');
+            const label = document.getElementById('mediaFileLabel');
+            const fileInput = document.getElementById('postMediaFile');
+
+            if (type === 'none') {
+                container.style.display = 'none';
+            } else {
+                container.style.display = 'block';
+                if (type === 'photo') {
+                    label.textContent = "Subir Archivo de Foto";
+                    fileInput.accept = "image/*";
+                } else if (type === 'video') {
+                    label.textContent = "Subir Archivo de Video";
+                    fileInput.accept = "video/*";
+                }
+            }
+        }
+
+        function handleCreatePost(e) {
+            e.preventDefault();
+            if (!isAdminLoggedIn) return;
+
+            const author = document.getElementById('postAuthor').value.trim();
+            const category = document.getElementById('postCategory').value;
+            const mediaType = document.getElementById('postMediaType').value;
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+            const mediaUrl = document.getElementById('postMediaUrl').value.trim();
+            const mediaFile = document.getElementById('postMediaFile').files[0];
+
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric' }) + 
+                                  ' · ' + now.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+
+            const finalizePost = (finalMedia) => {
+                const newPost = {
+                    id: Date.now().toString(),
+                    author: author,
+                    date: formattedDate,
+                    category: category,
+                    mediaType: mediaType,
+                    title: title,
+                    content: content,
+                    media: finalMedia || null,
+                    likes: 0,
+                    likedBy: [],
+                    savedBy: [],
+                    comments: []
+                };
+
+                postsData.unshift(newPost);
+                savePostsToStorage();
+                renderPosts();
+                closeNewPostModal();
+                showToast("¡Contenido publicado con éxito en el muro!");
+            };
+
+            if (mediaFile) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    finalizePost(evt.target.result);
+                };
+                reader.readAsDataURL(mediaFile);
+            } else {
+                finalizePost(mediaUrl);
+            }
+        }
+
+        function deletePost(id) {
+            if (!isAdminLoggedIn) return;
+            postsData = postsData.filter(p => p.id !== id);
+            savePostsToStorage();
+            renderPosts();
+            showToast("Publicación eliminada.");
+        }
+
+        // --- INTERACCIONES ---
+        function toggleLike(id) {
+            if (!currentUser) {
+                showToast("Crea tu cuenta para dar Me gusta.");
+                openUserModal();
+                return;
+            }
+
+            const post = postsData.find(p => p.id === id);
+            if (post) {
+                if (!post.likedBy) post.likedBy = [];
+                const userIndex = post.likedBy.indexOf(currentUser.email);
+                if (userIndex > -1) {
+                    post.likedBy.splice(userIndex, 1);
+                    post.likes = Math.max(0, post.likes - 1);
+                } else {
+                    post.likedBy.push(currentUser.email);
+                    post.likes++;
+                }
+                savePostsToStorage();
+                renderPosts();
+            }
+        }
+
+        function toggleBookmark(id) {
+            if (!currentUser) {
+                showToast("Crea tu cuenta para guardar publicaciones.");
+                openUserModal();
+                return;
+            }
+
+            const post = postsData.find(p => p.id === id);
+            if (post) {
+                if (!post.savedBy) post.savedBy = [];
+                const idx = post.savedBy.indexOf(currentUser.email);
+                if (idx > -1) {
+                    post.savedBy.splice(idx, 1);
+                    showToast("Eliminado de guardados.");
+                } else {
+                    post.savedBy.push(currentUser.email);
+                    showToast("¡Guardado en tu perfil!");
+                }
+                savePostsToStorage();
+                renderPosts();
+            }
+        }
+
+        function addComment(e, id) {
+            e.preventDefault();
+            if (!currentUser) {
+                showToast("Crea tu cuenta para comentar.");
+                openUserModal();
+                return;
+            }
+
+            const input = document.getElementById(`comment-input-${id}`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const post = postsData.find(p => p.id === id);
+            if (post) {
+                post.comments.push({
+                    author: currentUser.name,
+                    avatar: currentUser.avatar,
+                    text: text
+                });
+                input.value = '';
+                savePostsToStorage();
+                renderPosts();
+            }
+        }
+
+        // --- FILTROS ---
+        function filterCategory(cat) {
+            closeProfileTab();
+            activeCategoryFilter = cat;
+
+            const titles = {
+                all: "Inicio • Noticias",
+                institucional: "Institucional",
+                deportes: "Deportes",
+                cultura: "Arte y Cultura",
+                academico: "Académico",
+                saved: "Publicaciones Guardadas"
+            };
+            document.getElementById('feedHeaderTitle').innerHTML = `<span>${titles[cat] || "Inicio"}</span><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>`;
+            renderPosts();
+        }
+
+        function syncSearch(val) {
+            document.getElementById('searchInput').value = val;
+            renderPosts();
+        }
+
+        function searchPosts() {
+            renderPosts();
+        }
+
+        // --- RENDERIZADO DEL MURO ---
+        function renderPosts() {
+            const container = document.getElementById('postsContainer');
+            const searchKeyword = document.getElementById('searchInput').value.toLowerCase();
+
+            let filtered = postsData.filter(post => {
+                let matchesCategory = true;
+                if (activeCategoryFilter === 'saved') {
+                    matchesCategory = currentUser && post.savedBy && post.savedBy.includes(currentUser.email);
+                } else if (activeCategoryFilter !== 'all') {
+                    matchesCategory = post.category === activeCategoryFilter;
+                }
+
+                const matchesSearch = post.title.toLowerCase().includes(searchKeyword) || 
+                                      post.content.toLowerCase().includes(searchKeyword) ||
+                                      post.author.toLowerCase().includes(searchKeyword);
+                return matchesCategory && matchesSearch;
+            });
+
+            document.getElementById('postCountBadge').textContent = `${filtered.length} ${filtered.length === 1 ? 'post' : 'posts'}`;
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="p-16 text-center space-y-3.5">
+                        <div class="w-16 h-16 bg-xcard border border-xborder rounded-2xl flex items-center justify-center mx-auto text-amber-400 text-2xl shadow-inner">
+                            <i class="fa-regular fa-newspaper"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">
+                            ${activeCategoryFilter === 'saved' ? 'No tienes publicaciones guardadas' : 'Aún no hay publicaciones en el muro'}
+                        </h3>
+                        <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed">
+                            ${activeCategoryFilter === 'saved' 
+                                ? 'Guarda publicaciones con el ícono de marcador para verlas aquí.' 
+                                : 'Ingresa la clave de editor para subir fotos, videos y comunicados oficiales.'}
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(post => {
+                const categoryBadge = {
+                    institucional: '<span class="bg-red-950/80 text-red-400 border border-red-900/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Institucional</span>',
+                    deportes: '<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-900/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Deportes</span>',
+                    cultura: '<span class="bg-amber-950/80 text-amber-400 border border-amber-900/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Arte y Cultura</span>',
+                    academico: '<span class="bg-indigo-950/80 text-indigo-400 border border-indigo-900/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Académico</span>'
+                }[post.category] || '';
+
+                let mediaHtml = '';
+                if (post.media) {
+                    if (post.mediaType === 'video' || (post.media.startsWith('data:video') || post.media.includes('.mp4'))) {
+                        mediaHtml = `
+                            <div class="w-full rounded-2xl overflow-hidden bg-xcard border border-xborder shadow-lg">
+                                <video controls class="w-full max-h-[420px] object-cover">
+                                    <source src="${post.media}" type="video/mp4">
+                                    Tu navegador no soporta videos.
+                                </video>
+                            </div>
+                        `;
+                    } else {
+                        mediaHtml = `
+                            <div class="w-full max-h-[420px] overflow-hidden rounded-2xl bg-xcard border border-xborder shadow-lg">
+                                <img src="${post.media}" alt="Contenido" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'">
+                            </div>
+                        `;
+                    }
+                }
+
+                const isLikedByCurrentUser = currentUser && post.likedBy && post.likedBy.includes(currentUser.email);
+                const isSavedByCurrentUser = currentUser && post.savedBy && post.savedBy.includes(currentUser.email);
+
+                const commentsHtml = post.comments.map(c => `
+                    <div class="bg-xcard p-3 rounded-2xl text-xs flex items-start gap-3 border border-xborder/80">
+                        <img src="${c.avatar}" alt="Avatar" class="w-7 h-7 rounded-full object-cover flex-shrink-0 mt-0.5 border border-amber-400/40">
+                        <div class="space-y-1 flex-1 min-w-0">
+                            <span class="font-bold text-gray-200 block">${c.author}</span>
+                            <span class="text-gray-300 leading-relaxed break-words">${c.text}</span>
+                        </div>
+                    </div>
+                `).join('');
+
+                return `
+                    <article class="p-5 hover:bg-xcard/40 transition-colors">
+                        <div class="flex gap-4">
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-red-600 to-amber-400 p-0.5 flex-shrink-0 shadow-md">
+                                <div class="w-full h-full bg-xblack rounded-[14px] flex items-center justify-center font-extrabold text-sm text-amber-400">
+                                    ${post.author.charAt(0).toUpperCase()}
+                                </div>
+                            </div>
+
+                            <div class="flex-1 min-w-0 space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <div>
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <h3 class="font-extrabold text-sm text-white leading-snug">${post.author}</h3>
+                                            <i class="fa-solid fa-circle-check text-amber-400 text-xs" title="Cuenta Oficial Verificada"></i>
+                                            ${categoryBadge}
+                                        </div>
+                                        <p class="text-[11px] text-gray-400 mt-0.5">${post.date}</p>
+                                    </div>
+
+                                    ${isAdminLoggedIn ? `
+                                        <button onclick="deletePost('${post.id}')" title="Eliminar publicación" class="text-gray-500 hover:text-rose-500 p-2 rounded-xl hover:bg-rose-950/40 transition-colors">
+                                            <i class="fa-regular fa-trash-can text-sm"></i>
+                                        </button>
+                                    ` : ''}
+                                </div>
+
+                                <div class="space-y-1.5">
+                                    <h2 class="text-base font-extrabold text-gray-100 leading-snug">${post.title}</h2>
+                                    <p class="text-sm text-gray-300 leading-relaxed whitespace-pre-line">${post.content}</p>
+                                </div>
+
+                                ${mediaHtml}
+
+                                <div class="pt-1 flex items-center justify-between text-xs font-semibold text-gray-400 max-w-sm">
+                                    <button onclick="toggleLike('${post.id}')" class="flex items-center gap-2 group ${isLikedByCurrentUser ? 'text-rose-500' : 'hover:text-rose-500'} transition-colors">
+                                        <span class="p-2 rounded-xl group-hover:bg-rose-500/10 transition-colors">
+                                            <i class="${isLikedByCurrentUser ? 'fa-solid' : 'fa-regular'} fa-heart text-base"></i>
+                                        </span>
+                                        <span>${post.likes}</span>
+                                    </button>
+
+                                    <div class="flex items-center gap-2 text-gray-400">
+                                        <span class="p-2">
+                                            <i class="fa-regular fa-comment text-base"></i>
+                                        </span>
+                                        <span>${post.comments.length}</span>
+                                    </div>
+
+                                    <button onclick="toggleBookmark('${post.id}')" title="Guardar en tu perfil" class="flex items-center gap-2 group ${isSavedByCurrentUser ? 'text-amber-400' : 'hover:text-amber-400'} transition-colors">
+                                        <span class="p-2 rounded-xl group-hover:bg-amber-400/10 transition-colors">
+                                            <i class="${isSavedByCurrentUser ? 'fa-solid' : 'fa-regular'} fa-bookmark text-base"></i>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="pt-3 border-t border-xborder/60 space-y-3">
+                                    ${post.comments.length > 0 ? `
+                                        <div class="space-y-2.5 max-h-56 overflow-y-auto custom-scrollbar">
+                                            ${commentsHtml}
+                                        </div>
+                                    ` : ''}
+
+                                    <form onsubmit="addComment(event, '${post.id}')" class="flex items-center gap-2.5 pt-1">
+                                        ${currentUser ? `<img src="${currentUser.avatar}" class="w-8 h-8 rounded-full object-cover border border-amber-400 flex-shrink-0">` : ''}
+                                        <input type="text" id="comment-input-${post.id}" placeholder="${currentUser ? 'Escribe tu comentario...' : 'Crea tu cuenta para comentar...'}" 
+                                            class="flex-1 bg-xblack border border-xborder rounded-full px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 transition-colors">
+                                        <button type="submit" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black font-extrabold text-xs px-5 py-2.5 rounded-full shadow-md transition-all">
+                                            Enviar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
